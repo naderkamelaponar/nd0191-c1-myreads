@@ -12,8 +12,10 @@ const ShelfChanger = (props) => {
         <div className="book-shelf-changer">
             <select
                 onChange={(e) => {
-                    const label = options.filter(o=>{return o.value===e.target.value})[0]['label']
-                    props.handleUpdateShelf(book, e.target.value,label);
+                    const label = options.filter((o) => {
+                        return o.value === e.target.value;
+                    })[0]["label"];
+                    props.handleUpdateShelf(book, e.target.value, label);
                 }}
                 defaultValue="moveTo"
             >

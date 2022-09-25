@@ -7,10 +7,10 @@ const Shelfs = () => {
     const [read, setRead] = useState([]);
     const [wantToRead, setWantToRead] = useState([]);
     const [currentlyReading, setCurrentlyReading] = useState([]);
-    const handleUpdateShelf = async (book, newShelf,label) => {
-        const res = await update(book,newShelf)
-        if (res) await booksData()
-        window.alert(`The Book ${book.title} has moved to ${label}`)
+    const handleUpdateShelf = async (book, newShelf, label) => {
+        const res = await update(book, newShelf);
+        if (res) await booksData();
+        window.alert(`The Book ${book.title} has moved to ${label}`);
     };
     const booksData = async () => {
         const res = await getAll();

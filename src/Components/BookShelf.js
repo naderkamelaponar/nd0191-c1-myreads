@@ -6,22 +6,21 @@ const BookShelf = (props) => {
         <div>
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{label}</h2>
-                { books
-                    && <Books
+                {books && (
+                    <Books
                         books={books}
                         handleUpdateShelf={handleUpdateShelf}
                     />
-                }
-                {!books.length  && 
+                )}
+                {!books.length && (
                     <h4>
-                    Nothing in{" "}
-                    <u>
-                        <i>{label}</i>
-                    </u>{" "}
-                    shelf
-                </h4>
-                }
-                
+                        Nothing in{" "}
+                        <u>
+                            <i>{label}</i>
+                        </u>{" "}
+                        shelf
+                    </h4>
+                )}
             </div>
         </div>
     );

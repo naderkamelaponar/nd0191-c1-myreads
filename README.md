@@ -12,6 +12,12 @@ npm install
 npm start
 ```
 
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+### Live Site
+
+[MyReads](https://63304fc3fe0c270344304db6--chic-centaur-773081.netlify.app/)
+
 # MyReads Project
 
 This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.

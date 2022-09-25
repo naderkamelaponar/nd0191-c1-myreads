@@ -14,13 +14,15 @@ const SearchPage = () => {
         };
         getBooks();
     }, [searchValue]);
-    const handleUpdateShelf = async (book, newShelf,label) => {
-        await update(book,newShelf)
-        const newBook= {...book,shelf:newShelf}
-        setBooks(books.map(b=>{
-            return b.id===book.id ? newBook:b
-        }))
-        window.alert(`The Book ${book.title} has moved to ${label}`)
+    const handleUpdateShelf = async (book, newShelf, label) => {
+        await update(book, newShelf);
+        const newBook = { ...book, shelf: newShelf };
+        setBooks(
+            books.map((b) => {
+                return b.id === book.id ? newBook : b;
+            })
+        );
+        window.alert(`The Book ${book.title} has moved to ${label}`);
     };
 
     return (
@@ -44,7 +46,13 @@ const SearchPage = () => {
                 <ol className="books-grid">
                     {books && books.length ? (
                         books.map((b) => {
-                            return <Book key={b.id} book={b} handleUpdateShelf={handleUpdateShelf}/>;
+                            return (
+                                <Book
+                                    key={b.id}
+                                    book={b}
+                                    handleUpdateShelf={handleUpdateShelf}
+                                />
+                            );
                         })
                     ) : !searchValue.length ? (
                         <h4>Write something to start searching</h4>
