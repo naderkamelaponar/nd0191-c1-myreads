@@ -14,11 +14,13 @@ body,
 /* main page */
 
 .list-books-title {
+    position: display;
     padding: 10px 0;
     background: #2e7c31;
     text-align: center;
 }
 .list-books-title h1 {
+    position: display;
     font-weight: 400;
     margin: 0;
     color: white;
@@ -68,7 +70,7 @@ body,
 /* search page */
 
 .search-books-bar {
-    position: fixed;
+    position: relative;
     width: 100%;
     top: 0;
     left: 0;

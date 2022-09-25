@@ -1,28 +1,34 @@
 /** بسم الله الرحمن الرحيم */
 import { useState, useEffect } from "react";
-import { getAll } from "../BooksAPI";
-import Book from "./Book";
-const SearchPage = ({ setShowSearchpage }) => {
+import { search } from "../../BooksAPI";
+import { Link } from "react-router-dom";
+import { update } from "../../BooksAPI";
+import Book from "../Book";
+const SearchPage = () => {
     const [books, setBooks] = useState([]);
     const [searchValue, setSearchValue] = useState("");
     useEffect(() => {
         const getBooks = async () => {
-            const res = await getAll();
+            const res = await search(searchValue, 100);
             setBooks(res);
         };
         getBooks();
-    }, [setBooks]);
+    }, [searchValue]);
+    const handleUpdateShelf = async (book, newShelf,label) => {
+        await update(book,newShelf)
+        const newBook= {...book,shelf:newShelf}
+        setBooks(books.map(b=>{
+            return b.id===book.id ? newBook:b
+        }))
+        window.alert(`The Book ${book.title} has moved to ${label}`)
+    };
 
     return (
         <div className="search-books">
             <div className="search-books-bar">
-                <a
-                    href="/"
-                    className="close-search"
-                    onClick={setShowSearchpage}
-                >
+                <Link to="/" className="close-search">
                     Close
-                </a>
+                </Link>
                 <div className="search-books-input-wrapper">
                     <input
                         type="text"
@@ -36,10 +42,15 @@ const SearchPage = ({ setShowSearchpage }) => {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    {books &&
+                    {books && books.length ? (
                         books.map((b) => {
-                            return <Book key={b.id} book={b} />;
-                        })}
+                            return <Book key={b.id} book={b} handleUpdateShelf={handleUpdateShelf}/>;
+                        })
+                    ) : !searchValue.length ? (
+                        <h4>Write something to start searching</h4>
+                    ) : (
+                        <h4>No Books were found</h4>
+                    )}
                 </ol>
             </div>
         </div>
